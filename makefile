@@ -8,6 +8,6 @@ client:client.o
 server:server.o
 	$(CC) $(CFLAGS)  $^ -o $@
 
-:PHYOY:clean
+:PHONY:clean
 clean:
 	rm  -rf *.o server client

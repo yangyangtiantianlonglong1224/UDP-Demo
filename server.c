@@ -39,18 +39,17 @@ int main(int argc, char **argv)
     int len = sizeof(clientAddr);
     while (1) {
         n = recvfrom(sock, buff, 511, 0, (struct sockaddr*)&clientAddr, &len);
-        if (n>0)
-        {
+        if (n>0) {
             buff[n] = 0;
             printf("%s %u says: %s\n", inet_ntoa(clientAddr.sin_addr), ntohs(clientAddr.sin_port), buff);
             n = sendto(sock, buff, n, 0, (struct sockaddr *)&clientAddr, sizeof(clientAddr));
             if (n < 0) {
-            perror("sendto");
-            break;
+                perror("sendto");
+                break;
             }
         } else {
-        perror("recv");
-        break;
+            perror("recv");
+            break;
         }
     }
     return 0;
